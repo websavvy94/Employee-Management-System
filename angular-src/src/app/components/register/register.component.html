@@ -1,0 +1,141 @@
+<header>
+    <div class="topnav" id="myTopnav">
+       <a href="#home" class="active">Home</a>
+       <div>
+          <a class="profileName" href="#">Ashley</a>
+       </div>
+       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <div class="row">
+       <div class="col-lg-3 col-md-3">
+          <label></label>
+       </div>
+       <div class="col-lg-3 col-md-3" align="center">
+          <img width="150" height="80" src="assets/logo.png" alt="logo">
+       </div>
+    </div>
+  </header>
+  <form>
+      <div class="row">
+         <div class="col-lg-6 col-md-6">
+            <h4><font color="#A0522D"> Enter User Details </font></h4>
+         </div>
+      </div>
+      <flash-messages></flash-messages>
+      <div class="row">
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="form_name"><font color="#A0522D"> Firstname </font> </label>
+               <input id="form_name" type="text" name="first_name" [(ngModel)] = "first_name" class="form-control" placeholder="Please enter your firstname">
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="form_lastname"><font color="#A0522D"> Lastname </font> </label>
+               <input id="form_lastname" type="text" name="last_name" [(ngModel)] = "last_name" class="form-control" placeholder="Please enter your lastname">
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+               <label for="form_email"> <font color="#A0522D"> Email ID</font> </label>
+               <input id="form_email" type="email" name="email" [(ngModel)] = "email" class="form-control" placeholder="Please enter your email">
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+               <label for="form_phone"><font color="#A0522D"> Phone Number</font> </label>
+               <input id="form_phone" type="tel" name="phone" [(ngModel)] = "phone" class="form-control" placeholder="Please enter your phone">
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-4 col-md-4">
+            <div class="form-group">
+               <label for="form_username"> <font color="#A0522D"> User Name </font></label>
+               <input id="form_username" name="username" [(ngModel)] = "username" class="form-control" placeholder="User Name">
+            </div>
+         </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-8 col-md-8">
+               <label><font color="#A0522D"> Permission </font></label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-1 col-md-1">
+           
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+               <label><input type="checkbox" name="em" [(ngModel)] = "em"/> &nbsp; &nbsp; Employee Management (EM)</label> &nbsp; &nbsp;
+               <label><input type="checkbox" name="bi" [(ngModel)] = "bi"/> &nbsp; &nbsp; Beverage Inventory (BI) </label> &nbsp; &nbsp;
+               <label><input type="checkbox" name="rm" [(ngModel)] = "rm"/> &nbsp; &nbsp; Room Management (RM) </label>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-1 col-md-1">
+           
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+               <label><input type="checkbox" name="sm" [(ngModel)] = "sm"/> &nbsp; &nbsp; Supply Management (SM)</label> &nbsp; &nbsp;
+               <label><input type="checkbox" name="s" [(ngModel)] = "s"/> &nbsp; &nbsp; Super (S) </label> &nbsp; &nbsp;
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-3 col-md-3">
+            <label> </label>
+         </div>
+         <div class="col-lg-3 col-md-3">
+            <button class="btn btn-default" (click) ="onValidate()">
+            Confirm
+            </button>
+            &nbsp;
+            &nbsp;
+            <button class="btn btn-default" data-toggle="modal" data-target="#mycancelModal">
+            Cancel
+            </button>
+         </div>
+      </div>
+      <div class="modal fade" id="mycancelModal" role="dialog">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title">Cancel</h4>
+               </div>
+               <div class="modal-body">
+                  <p>Are you sure you want to cancel ?</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                  &nbsp;
+                  &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="mysaveModal" role="dialog">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title">User Permission</h4>
+               </div>
+               <div class="modal-body">
+                  <p>Do you want to save the user details?</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" (click)="onRegisterSubmit()" class="btn btn-default" data-dismiss="modal">Yes</button>
+                  &nbsp;
+                  &nbsp;
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+               </div>
+            </div>
+         </div>
+      </div>
+    </form>
+

@@ -1,0 +1,24 @@
+{
+  "name": "mozingo",
+  "version": "1.0.0",
+  "description": "Mozingo Lake",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "nodemailer": "^4.6.4",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Lotus",
+  "license": "ISC"
+}

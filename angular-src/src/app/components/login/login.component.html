@@ -1,0 +1,41 @@
+<header>
+    <div align="center">
+        <img class="img-fluid" width="218" height="124" src="assets/logo.png" alt="logo">
+    </div>
+    <div align="center">
+        <img class="img-fluid" src="assets/lake.jpg" alt="lake">
+    </div>
+</header>
+<div class="container">
+    <form (submit)="onLoginSubmit()">
+        <div class="card loginCard" align="center">
+            <h2 class="greyText" style="margin-top:1em">User Login</h2>
+            <div class="card-body">
+                <ul style="list-style-type:none">
+                    <li>
+                        <label for="username">
+                            <b class="yellowText">Username</b>
+                        </label>
+                        <input type="text" placeholder="Enter Username" [(ngModel)] = "username" name="username" required>
+                    </li>
+                    <li>
+                        <label for="password">
+                            <b class="yellowText">Password</b>
+                        </label>
+                        <input type="password" placeholder="Enter Password" [(ngModel)] = "password" name="password" required>
+                    </li>
+                    <li>
+                        <a [routerLink] = "['/register']">Forgot password?</a>
+                    </li>
+                    <li><flash-messages></flash-messages></li>
+                    <li>
+                        <button class="loginButton" type="submit">Login</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<footer>
+    <p>© 2012-17 City of Maryville All Rights Reserved 25055 Liberty Road, Maryville, MO 64468</p>
+</footer>

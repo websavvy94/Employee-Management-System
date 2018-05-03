@@ -1,0 +1,40 @@
+<header>
+  <div align="center">
+      <img class="img-fluid" src="assets/logo.png" alt="logo">
+  </div>
+  <hr class="hr">
+  <div align="center">
+      <img class="img-fluid" src="assets/lake.jpg" alt="lake">
+  </div>
+</header>
+<div class="container">
+  <form method="POST" action="/user/login">
+      <div class="card loginCard" align="center">
+          <h2 class="greyText" style="margin-top:1em">You're almost back in</h2>
+          <div class="card-body">
+              <hr class="boxHr">
+              <ul style="list-style-type:none">
+                  <li>
+                      <p>
+                          We have sent instructions to reset the password to your registered email
+                      </p>
+                  </li>
+                  <li>
+                      <p class="emailColor">
+                          {{email}}
+                      </p>
+                  </li>
+                  <li><flash-messages></flash-messages></li>
+                  <li>
+                      <p>
+                          <a [routerLink] = "['/forgotConfirmation']" (click)="onSendVerificationLink()">Did not get the reset link?</a>
+                      </p>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </form>
+</div>
+<footer>
+  <p>© 2012-17 City of Maryville All Rights Reserved 25055 Liberty Road, Maryville, MO 64468</p>
+</footer>
