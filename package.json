@@ -16,9 +16,9 @@
     "mongoose": "*",
     "nodemailer": "^4.6.4",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "passport": "*",
+    "passport": "^0.4.0",
     "passport-jwt": "*"
   },
-  "author": "Lotus",
+  "author": "Apple",
   "license": "ISC"
 }

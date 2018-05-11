@@ -29,6 +29,18 @@ const UserSchema = mongoose.Schema({
     phone: {
         type: String
     },
+    street: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    image: {
+        type: String
+    },
     em: {
         type: Boolean
     },
@@ -49,7 +61,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = mongoose.model('users', UserSchema);
 
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
@@ -70,6 +82,20 @@ module.exports.addUser = function(newUser, callback){
     });
 }
 
+module.exports.updateUser = function(newUser, callback){
+    User.update(
+        { username: newUser.username },
+        {
+            first_name: newUser.first_name,
+            last_name: newUser.last_name,
+            email: newUser.email,
+            phone: newUser.phone
+        },
+        { upsert: false },
+        callback
+    );
+}
+
 module.exports.changePassword = function(newUser, callback){
     const query = {username: newUser.username};
     const options ={new: true};
@@ -80,8 +106,6 @@ module.exports.changePassword = function(newUser, callback){
             User.findOneAndUpdate(query, { password: hash }, options, callback);
         });
     });
-    
-    
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){

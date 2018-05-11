@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
         });
 
         // Redirect some url based on the user's role        
-        if(data.user.role == 'user'){
-          this.router.navigate(['/dashboard']);
-        } else if(data.role == 'super'){
-
-        } else {
-
-        }
+        // if(data.user.role == 'user'){
+        //   this.router.navigate(['/home']);
+        // } else if(data.role == 'admin'){
+        //   this.router.navigate(['/home']);
+        // } else {
+        // }
+        this.router.navigate(['/home']);
 
       } else {
         this.flashMessagesService.show(data.msg, {

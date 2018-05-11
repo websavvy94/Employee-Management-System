@@ -32,6 +32,25 @@ router.post('/register', (req, res, next) => {
     })
 });
 
+//Update
+router.post('/update', (req, res, next) => {
+    let newUser = new User({
+        _id: req.body._id,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone
+    });
+    User.updateUser(newUser, (err, user) => {
+        if(err){
+            return res.json({success: false, msg: 'failed to update profile'});
+        } else {
+            return res.json({success: true, msg: 'Succeed to update profile'});
+        }
+    })
+});
+
 //Authenticate
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
@@ -114,6 +133,11 @@ router.post('/changepassword', (req, res, next) => {
             return res.json({success: true, msg: 'Password changed successfully', user: user});
         }
     })
+});
+
+//upload Image
+router.post('/uploadImage', (req, res, next) => {
+    console.log(res);
 });
 
 //Profile

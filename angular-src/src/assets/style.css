@@ -4,7 +4,8 @@ body{
 
 /* Navbar */
 .topnav {
-    overflow: hidden;
+    /* overflow: hidden; */
+    height: 55px;
     background-color: #fcfcfb;
     border-bottom: 2px solid orange;
   }
