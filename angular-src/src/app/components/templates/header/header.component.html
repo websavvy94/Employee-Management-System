@@ -1,0 +1,22 @@
+<header>
+  <div class="topnav" id="myTopnav">
+     <a href="#home" class="active">Home</a>
+     <div class="dropdown">
+      <a class="dropdown-toggle" id="headerMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Welcome {{username}}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="headerMenu">
+        <a class="dropdown-item" href="#" [routerLink]="['/view_profile']">My Profile</a>
+        <a *ngIf="roleF" class="dropdown-item" href="#" [routerLink]="['/admin_notification']">System Notifications</a>
+        <a *ngIf="roleF" class="dropdown-item" href="#" [routerLink]="['/admin_panel']">Admin Panel</a>
+        <a class="dropdown-item" href="#" (click)="onLogoutClick()">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+     <div class="col-lg-12 col-md-12" align="center">
+        <img width="150" height="80" src="assets/logo.png" alt="logo">
+     </div>
+  </div>
+</header>

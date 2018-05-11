@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="container">
+        
+    <div class="row">
+        <div class="col-md-6 col-sm-12 system_btn_wrapper">
+            <button class="system_btn" [routerLink]="['/ems_dashboard']">Employee<br/>Management</button>
+        </div>
+        <div class="col-md-6 col-sm-12 system_btn_wrapper">
+            <button class="system_btn" [routerLink]="['/bis_dashboard']">Beverage<br/>Inventory</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12 system_btn_wrapper">
+            <button class="system_btn {{roleClass}}" [routerLink]="['/rms_dashboard']">Room<br/>Management</button>
+        </div>
+        <div class="col-md-6 col-sm-12 system_btn_wrapper">
+            <button class="system_btn {{roleClass}}" [routerLink]="['/sms_dashboard']">Supply<br/>Management</button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2012-17 City of Maryville All Rights Reserved 25055 Liberty Road, Maryville, MO 64468</p>
+</footer>

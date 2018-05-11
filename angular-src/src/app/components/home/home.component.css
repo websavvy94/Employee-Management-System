@@ -1,0 +1,24 @@
+.system_btn_wrapper {
+    text-align: center;
+}
+
+.system_btn {
+    width: 70%;
+    padding: 10% 0;
+    font-size: 25px;
+    margin: 10% 0;
+    border-radius: 20px;
+    background-color: #ab8822;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.75) -3px 7px 5px 0px;
+    cursor: pointer;
+}
+
+.system_btn:hover {
+    opacity: 0.8;
+}
+
+.system_btn.disabled {
+    opacity: 0.65; 
+    cursor: not-allowed;
+}

@@ -1,0 +1,5 @@
+div.profile_info_element label,
+div.profile_info_element p,
+div.profile_info_element input {
+    display: inline-block;
+}

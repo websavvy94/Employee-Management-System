@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <br/>
+          <h4><font color="#A0522D">My Profile</font></h4>
+          <br/>
+      </div>
+    </div>
+    <div class="row">
+      <form class="col-md-10 col-sm-12">
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group profile_info_element row">
+                  <label class="col-md-4 col-sm-12"> <font color="#A0522D">First Name: </font> </label>
+                  <p *ngIf="editableF" class="col-md-8 col-sm-12">{{user.first_name}}</p>
+                  <input *ngIf="!editableF" class="col-md-8 col-sm-12" type="text" [(ngModel)] = "user.first_name" name="first_name" required value={{user.first_name}}>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group profile_info_element row">
+                  <label class="col-md-4 col-sm-12"> <font color="#A0522D"> Last Name:</font> </label>
+                  <p *ngIf="editableF" class="col-md-8 col-sm-12">{{user.last_name}}</p>
+                  <input *ngIf="!editableF" class="col-md-8 col-sm-12" type="text" [(ngModel)] = "user.last_name" name="last_name" required value={{user.last_name}}>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <div class="form-group profile_info_element row">
+                  <label class="col-md-2 col-sm-12"> <font color="#A0522D"> Email ID: </font> </label>
+                  <p *ngIf="editableF" class="col-md-10 col-sm-12">{{user.email}}</p>
+                  <input *ngIf="!editableF" class="col-md-10 col-sm-12" type="text" [(ngModel)] = "user.email" name="email" required value={{user.email}}>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group profile_info_element row">
+                  <label class="col-md-5 col-sm-12"> <font color="#A0522D"> Phone Number: </font></label>
+                  <p *ngIf="editableF" class="col-md-7 col-sm-12">{{user.phone}}</p>
+                  <input *ngIf="!editableF" class="col-md-7 col-sm-12" type="text" [(ngModel)] = "user.phone" name="phone" required value={{user.phone}}>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group profile_info_element row">
+                  <label class="col-md-4 col-sm-12"> <font color="#A0522D"> Address : </font></label>
+                  &nbsp; &nbsp;  address value
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <button *ngIf="editableF" class="btn btn-default">
+                Change Password
+                </button>
+            </div>
+          </div>
+      </form>
+      <div class="col-md-2 col-sm-6" style="text-align: center;">
+          <img width="100%" src="assets/profilePhoto.png" alt="profilephoto">
+          
+          <input *ngIf="!editableF" type="file" (change)="onFileSelected($event)">
+          <button *ngIf="!editableF" type="button" (click)="onUpload()">Upload</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4">
+          <label> </label>
+      </div>
+      <div class="col-lg-4 col-md-4" style="text-align: center;">
+          <button *ngIf="editableF" type="button" class="btn btn-brown" (click)="editProfile(user)">Edit Profile</button>
+          <button *ngIf="!editableF" type="button" class="btn btn-brown" (click)="saveProfile(user)">Save</button>
+          <button *ngIf="!editableF" type="button" class="btn btn-brown" (click)="cancelEdit(user)">Cancel</button>
+      </div>
+    </div>
+    <flash-messages></flash-messages>
+</div>
