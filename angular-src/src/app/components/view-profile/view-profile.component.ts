@@ -24,13 +24,14 @@ export class ViewProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.user = this.authService.getProfile().subscribe(profile => {
-      this.user = profile.user;
-    },
-    err => {
-      console.log(err);
-      return false;
-    }
+        this.user = profile.user;
+      },
+      err => {
+        console.log(err);
+        return false;
+      }
     );
     this.editableF = true;
   }
@@ -58,15 +59,6 @@ export class ViewProfileComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
-  }
-
-  onUpload() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.http.post('http://localhost:3000/users/uploadImage', fd)
-    .subscribe(res => {
-      console.log(res);
-    });
   }
 
 }

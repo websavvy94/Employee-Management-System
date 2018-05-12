@@ -35,14 +35,7 @@ export class LoginComponent implements OnInit {
           cssClass: 'alert-success',
           timeout: 5000
         });
-
-        // Redirect some url based on the user's role        
-        // if(data.user.role == 'user'){
-        //   this.router.navigate(['/home']);
-        // } else if(data.role == 'admin'){
-        //   this.router.navigate(['/home']);
-        // } else {
-        // }
+        
         this.router.navigate(['/home']);
 
       } else {

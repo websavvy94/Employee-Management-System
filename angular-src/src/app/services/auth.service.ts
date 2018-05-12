@@ -24,6 +24,14 @@ export class AuthService {
      .map(res => res.json());
   }
 
+  updateUserPassword(user){    
+    // console.log(user);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/updatePassword', user, {headers: headers})
+     .map(res => res.json());
+  }
+
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -45,6 +53,20 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+  }
+
+  getActivateUsersData() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/activeuser', {headers: headers})
+     .map(res => res.json());
+  }
+
+  getInactivateUsersData() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/inactiveuser', {headers: headers})
+     .map(res => res.json());
   }
 
   loadToken(){
@@ -76,5 +98,11 @@ export class AuthService {
      .map(res => res.json());
   }
 
+  changeUserStatus(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/changeStatus', user, {headers: headers})
+     .map(res => res.json());
+  }
 
 }

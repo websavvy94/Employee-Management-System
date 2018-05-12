@@ -41,6 +41,9 @@ const UserSchema = mongoose.Schema({
     image: {
         type: String
     },
+    status: {
+        type: Boolean
+    },
     em: {
         type: Boolean
     },
@@ -82,6 +85,7 @@ module.exports.addUser = function(newUser, callback){
     });
 }
 
+
 module.exports.updateUser = function(newUser, callback){
     User.update(
         { username: newUser.username },
@@ -106,6 +110,12 @@ module.exports.changePassword = function(newUser, callback){
             User.findOneAndUpdate(query, { password: hash }, options, callback);
         });
     });
+}
+
+module.exports.changeStatus = function(newUser, callback){
+    const filter = {username: newUser.username};
+    const options ={new: true};
+    User.findOneAndUpdate(filter, { status: newUser.status }, options, callback);
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){

@@ -1,0 +1,173 @@
+<app-ems-header></app-ems-header>
+<!-- Save and other option -->
+<div class="container" align="center" style="margin-top: 15px;">
+    <ul class="nav" align="center">
+        <li>
+            <a href="#"> Back</a>
+        </li>
+        <li>
+            <a href="#">Save and Close</a>
+        </li>
+        <li>
+            <a href="#">Delete</a>
+        </li>
+        <li>
+            <p>Select</p>
+        </li>
+        <li>
+            <select>
+                <option value="Select">Select</option>
+                <option value="One">One</option>
+                <option value="Two">Two</option>
+                <option value="Three">Three</option>
+            </select>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid" style="padding-left: 50px;">
+    <div class="row">
+        <div class="col-md-5">
+            <h4>Details</h4>
+            <div class="form-group row">
+                <div class="col-12">
+                    <input class="form-control" type="text" placeholder="Event Name" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <input class="form-control" type="text" placeholder="Location" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
+                </div>
+                <div class="col-4">
+                  <select class="form-control">
+                    <option>12</option>
+                    <option>12</option>
+                    <option>12</option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  All Day
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <input class="form-control" type="datetime-local" value="" id="datetime-local-input">
+                </div>
+                <div class="col-4">
+                  <select class="form-control">
+                    <option>12</option>
+                    <option>12</option>
+                    <option>12</option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-4 col-form-label">Assign Employee</label>
+              <div class="col-4" style="text-align: center;">
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Assign Update</button>
+              </div>
+              <div class="container-fluid modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Assign Employee</h5>                                        
+                            <!-- <button type="button" class="close" data-dismiss="modal">&CircleTimes;</button> -->
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-3">
+                                <label><b>Assign coordinator</b></label>
+                                <ul style="list-style: none; padding-left:0">
+                                    <li>
+                                        <input type="checkbox">NameOne</li>
+                                    <li>
+                                        <input type="checkbox">NameTwo</li>
+                                    <li>
+                                        <input type="checkbox">NameThree</li>
+                                    <li>
+                                        <input type="checkbox">NameFour</li>
+                                </ul>
+                            </div>
+                            <div class="col-3">
+                                <label><b>Bartender</b></label>
+                                <ul style="list-style: none; padding-left:0">
+                                    <li>
+                                        <input type="checkbox">NameOne</li>
+                                    <li>
+                                        <input type="checkbox">NameTwo</li>
+                                    <li>
+                                        <input type="checkbox">NameThree</li>
+                                    <li>
+                                        <input type="checkbox">NameFour</li>
+                                </ul>
+                            </div>
+                            <div class="col-3">
+                                <label><b>Maintainance</b></label>
+                                <ul style="list-style: none; padding-left:0">
+                                    <li>
+                                        <input type="checkbox">NameOne</li>
+                                    <li>
+                                        <input type="checkbox">NameTwo</li>
+                                    <li>
+                                        <input type="checkbox">NameThree</li>
+                                    <li>
+                                        <input type="checkbox">NameFour</li>
+                                </ul>
+                            </div>
+                            <div class="col-3">
+                                <label><b>HouseKeeping</b></label>
+                                <ul style="list-style: none; padding-left:0">
+                                    <li>
+                                        <input type="checkbox">NameOne</li>
+                                    <li>
+                                        <input type="checkbox">NameTwo</li>
+                                    <li>
+                                        <input type="checkbox">NameThree</li>
+                                    <li>
+                                        <input type="checkbox">NameFour</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn loginButton" data-dismiss="modal">Update</button>
+                            <button type="button" class="btn loginButton" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <h4>People</h4>
+            <div class="form-group row">
+                <label for="example-text-input" class="col-3 col-form-label">Send Mail To</label>
+                <div class="col-9">
+                    <button type="button" class="btn btn-deafult">Select</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Mail Sent To:</label>
+                <textarea disabled class="form-control" id="exampleTextarea" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Notes</label>
+                <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+            </div>
+        </div>
+        <div style="border: 2px solid transparent; border-color:darkgreen" class="col-md-2">
+            <h4>Upcoming Events</h4>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>© 2012-17 City of Maryville All Rights Reserved 25055 Liberty Road, Maryville, MO 64468</p>
+</footer>

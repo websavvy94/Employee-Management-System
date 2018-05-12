@@ -5,7 +5,9 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/database');
 const nodemailer = require('nodemailer');
-//const sgTransport = require('nodemailer-sendgrid-transport');
+const sgTransport = require('nodemailer-sendgrid-transport');
+const multer = require('multer');
+const upload = multer({dest: 'assets/uploads/images/'});
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -16,6 +18,7 @@ router.post('/register', (req, res, next) => {
         username: req.body.username,
         password:req.body.password,
         phone: req.body.phone,
+        status: req.body.status,
         em:req.body.em,
         bi:req.body.bi,
         rm:req.body.rm,
@@ -51,6 +54,22 @@ router.post('/update', (req, res, next) => {
     })
 });
 
+//Update Password
+router.post('/updatePassword', (req, res, next) => {
+    let newUser = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
+    // console.log(newUser);
+    User.changePassword(newUser, (err, user) => {
+        if(err){
+            return res.json({success: false, msg: 'failed to update profile'});
+        } else {
+            return res.json({success: true, msg: 'Succeed to update profile'});
+        }
+    })
+});
+
 //Authenticate
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
@@ -74,6 +93,7 @@ router.post('/authenticate', (req, res, next) => {
                     user: {
                         id: user._id,
                         username: user.username,
+                        password: password,
                         role: user.role
                     }
                 });
@@ -135,14 +155,48 @@ router.post('/changepassword', (req, res, next) => {
     })
 });
 
+//Inactivate User
+router.post('/changeStatus', (req, res, next) => {
+    let newUser = new User({        
+        username: req.body.username,
+        status: req.body.status
+    });
+
+    User.changeStatus(newUser, (err, user) => {
+        if(err){
+            return res.json({success: false, msg: 'Something went wrong'});
+        } else {
+            return res.json({success: true, msg: 'Inactivated successfully', user: user});
+        }
+    })
+});
+
 //upload Image
-router.post('/uploadImage', (req, res, next) => {
-    console.log(res);
+router.post('/uploadImage', upload.any(), (req, res, next) => {
+    res.send(req.files);
+    console.log(req.files);
 });
 
 //Profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
     res.json({user: req.user});    
+});
+
+//Read Users Data
+router.get('/activeuser', function(req, res, next) {
+    const filter = {status: true};
+    User.find(filter, function (err, users) {
+    if (err) return next(err);
+    res.json(users);
+  });
+});
+
+router.get('/inactiveuser', function(req, res, next) {
+    const filter = {status: false};
+    User.find(filter, function (err, users) {
+    if (err) return next(err);
+    res.json(users);
+  });
 });
 
 module.exports = router;

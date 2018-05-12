@@ -12,4 +12,8 @@ export class EmsDashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  newEvent() {
+    console.log("new event");
+  }
+
 }

@@ -1,34 +1,23 @@
 <app-header></app-header>
-<div>
+<div class="admin_panel_header">
   <div class="row">
-    <div class="col-lg-6 col-md-6">
-        <h3><font color="#A0522D"> Admin Panel </font></h3>
-    </div>
+    <h3><font color="#A0522D"> Admin Panel </font></h3><br/><br/>
   </div>
   <div class="row">
-    <div class="col-lg-1 col-md-1">
-        <div class="form-group">
-          <label></label>
+    <div  class="col-lg-4 col-md-4">
+        <div class="form-group row">
+          <label class="col-lg-6 col-md-6"><input type="radio" [(ngModel)] = "status" name="status" value="active" checked (click)="displayActiveUser()"> <font color="#A0522D"> Active </font> </label>
+          <label class="col-lg-6 col-md-6"><input type="radio" [(ngModel)] = "status" name="status" value="inactivea" (click)="displayInactiveUser()"> <font color="#A0522D"> Inactive </font> </label>
         </div>
     </div>
-    <div class="col-lg-2 col-md-2">
-        <div class="form-group">
-          <label><input type="radio" /> <font color="#A0522D"> Active </font> </label>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2">
-        <div class="form-group">
-          <label><input type="radio" /> <font color="#A0522D"> In Active </font> </label>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-5 col-md-4">
         <div class="form-group">
           <label></label>
         </div>
     </div>
     <div class="col-lg-3 col-md-3">
         <div class="form-group">
-          <button class="btn btn-default">
+          <button class="btn btn-default" [routerLink]="['/register']" style="float: right;">
           Add User
           </button>
         </div>
@@ -42,7 +31,7 @@
           <div class="input-group-addon" ><i class="fa fa-search"></i></div>
         </div>
     </div>
-    <div class="col-lg-8 col-md-8">
+    <div class="col-lg-9 col-md-9">
         <div class="form-group">
           <label><input type="checkbox" /> &nbsp; &nbsp; Employee Management (EM)</label> &nbsp; &nbsp;
           <label><input type="checkbox" /> &nbsp; &nbsp; Beverage Inventory (BI) </label> &nbsp; &nbsp;
@@ -59,16 +48,12 @@
         </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <label></label>
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-        <table class="table">
+  <div class="container">
+    <div class="row">
+        <table class="table users_table">
           <thead color="Black">
               <tr>
                 <th>First Name</th>
-                &nbsp; &nbsp;
                 <th>Last Name</th>
                 <th>User Name</th>
                 <th colspan="5">Permissions</th>
@@ -86,22 +71,43 @@
               </tr>
           </thead>
           <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type="checkbox" /></td>
-                <td><input type="checkbox" /></td>
-                <td><input type="checkbox" /></td>
-                <td><input type="checkbox" /></td>
-                <td><input type="checkbox" /></td>
-                <td><button type="button" class="btn btn-brown">Inactive</button></td>
+              <tr *ngFor="let user of users; let i = index">
+                  <td>{{user.first_name}}</td>
+                  <td>{{user.last_name}}</td>
+                  <td>{{user.username}}</td>
+                  <td><input type="checkbox" [checked]="user.em"/></td>
+                  <td><input type="checkbox" [checked]="user.bi" /></td>
+                  <td><input type="checkbox" [checked]="user.rm" /></td>
+                  <td><input type="checkbox" [checked]="user.sm" /></td>
+                  <td><input type="checkbox" [checked]="user.s" /></td>
+                  <td><button *ngIf="statusF" type="button" class="btn btn-brown" (click)="openModal(true, user.username)">Inactive</button></td>
+                  <td><button *ngIf="!statusF" type="button" class="btn btn-brown" (click)="openModal(true, user.username)">Active</button></td>
               </tr>
           </tbody>
         </table>
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <label></label>
-    </div>
   </div>
+</div>
+
+
+<div class="modal fade" id="inactiveModal" role="dialog" [ngStyle]="{'display': mdlIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+          <h4 *ngIf="statusF" class="modal-title">Inactivate User</h4>
+          <h4 *ngIf="!statusF" class="modal-title">Activate User</h4>
+          </div>
+          <div class="modal-body">
+          <p *ngIf="statusF">Are you sure you want to inactive this <span>{{modalUsername}}</span>?</p>
+          <p *ngIf="!statusF">Are you sure you want to active this <span>{{modalUsername}}</span>?</p>
+          </div>
+          <div class="modal-footer">
+          <button *ngIf="statusF" (click)="changeUserStatus(modalUsername, statusF)" type="button" data-dismiss="modal" class="btn btn-default">Yes</button>
+          <button *ngIf="!statusF" (click)="changeUserStatus(modalUsername, statusF)" type="button" data-dismiss="modal" class="btn btn-default">Yes</button>
+          &nbsp;
+          &nbsp;
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="openModal(false)">No</button>
+          </div>
+    </div>
+    </div>
 </div>

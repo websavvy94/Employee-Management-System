@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
+import {NotificateService} from './services/notificate.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AuthGuard} from './guards/auth.guard';
 import {PassGuard} from './guards/pass.guard';
@@ -28,6 +29,8 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 import { RmsDashboardComponent } from './components/rms-dashboard/rms-dashboard.component';
 import { SmsDashboardComponent } from './components/sms-dashboard/sms-dashboard.component';
 import { BisDashboardComponent } from './components/bis-dashboard/bis-dashboard.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { AddEventComponent } from './components/add-event/add-event.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -45,7 +48,9 @@ const appRoutes: Routes = [
   {path: 'view_profile', component: ViewProfileComponent, canActivate:[AuthGuard]},
   {path: 'rms_dashboard', component: RmsDashboardComponent, canActivate:[AuthGuard]},
   {path: 'sms_dashboard', component: SmsDashboardComponent, canActivate:[AuthGuard]},
-  {path: 'bis_dashboard', component: BisDashboardComponent, canActivate:[AuthGuard]}
+  {path: 'bis_dashboard', component: BisDashboardComponent, canActivate:[AuthGuard]},
+  {path: 'update_password', component: UpdatePasswordComponent, canActivate:[AuthGuard]},
+  {path: 'new_event', component: AddEventComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
@@ -67,7 +72,9 @@ const appRoutes: Routes = [
     ViewProfileComponent,
     RmsDashboardComponent,
     SmsDashboardComponent,
-    BisDashboardComponent
+    BisDashboardComponent,
+    UpdatePasswordComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +83,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard, PassGuard],
+  providers: [ValidateService, AuthService, NotificateService, AuthGuard, PassGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

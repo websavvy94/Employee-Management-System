@@ -1,0 +1,19 @@
+#myTopnav {
+    border-bottom: none;
+    border-top: 2px solid orange;
+}
+
+#myTopnav a {
+    width: 14%;
+    padding: 20px 15px;
+}
+
+#myTopnav a.logo_section {
+    width: 16%;
+    margin-top: -70px;
+    padding-bottom: 0px;
+}
+
+.ems-header {
+    margin-top: 55px;
+}

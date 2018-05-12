@@ -1,3 +1,23 @@
-<p>
-  System Notifications works!
-</p>
+<app-header></app-header>
+
+<div class="container">
+
+  <div class="row">
+    <h3><font color="#A0522D"> System Notifications </font></h3><br/><br/>
+  </div>
+
+  <flash-messages></flash-messages>
+  
+  <div *ngFor="let notification of notifications; let i = index">
+    <div class="row">
+      <!-- <input [(ngModel)] = "notification_id" name="notification_id" value={{notification.date}}> -->
+      <!-- <p [(ngModel)] = "notification_id" name="notification_id">{{notification._id}}</p> -->
+      <div class="col-sm-10">
+        {{notification.content}}
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-brown" (click)="delNotification(notification._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

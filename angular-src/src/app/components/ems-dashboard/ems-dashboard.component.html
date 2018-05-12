@@ -1,15 +1,15 @@
 <app-ems-header></app-ems-header>
 <div class="container-fluid" align="center">
-    <div class="row">
-        <div style="background:darkgreen; color:ghostwhite" class="col-md-3">
-            <h3>+ New Event</h3>
+    <div class="row" style="clear: both;">
+        <div class="ems-event-left">
+            <br>
+            <h3 [routerLink]="['/new_event']">+ New Event</h3>
             <p>More Calendar view</p>
         </div>
-        <div class="col-md-6">
+        <div class="ems-event-medium">
             <iframe src="https://calendar.google.com/calendar/embed?src=vishaldchilka%40gmail.com&ctz=Asia%2FCalcutta" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
-        <div class="col-md-1"></div>
-        <div style="border: 2px solid transparent; border-color:darkgreen" class="col-md-2">
+        <div style="border: 2px solid transparent; border-color:darkgreen" class="ems-event-right">
             <h3>Upcoming Events</h3>
         </div>
     </div>
