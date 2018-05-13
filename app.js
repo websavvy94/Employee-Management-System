@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 const users = require('./routes/users');
 const notifications = require('./routes/notifications');
+const events = require('./routes/events');
 
 //Connect to Database
 mongoose.connect(config.database);
@@ -43,6 +44,7 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/notifications', notifications);
+app.use('/events', events);
 
 // Index Route
 app.get('/', (req, res) => {

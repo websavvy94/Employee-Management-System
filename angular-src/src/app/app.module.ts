@@ -2,14 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-import {ValidateService} from './services/validate.service';
-import {AuthService} from './services/auth.service';
-import {NotificateService} from './services/notificate.service';
-import {FlashMessagesModule} from 'angular2-flash-messages';
-import {AuthGuard} from './guards/auth.guard';
-import {PassGuard} from './guards/pass.guard';
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+import { NotificateService } from './services/notificate.service';
+import { EventService } from './services/event.service';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AuthGuard } from './guards/auth.guard';
+import { PassGuard } from './guards/pass.guard';
+// import { FileSelectDirective } from 'ng2-file-upload/ng2-file-upload'; ////
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -75,6 +78,7 @@ const appRoutes: Routes = [
     BisDashboardComponent,
     UpdatePasswordComponent,
     AddEventComponent
+    // FileSelectDirective 
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, NotificateService, AuthGuard, PassGuard],
+  providers: [ValidateService, AuthService, NotificateService, EventService, AuthGuard, PassGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

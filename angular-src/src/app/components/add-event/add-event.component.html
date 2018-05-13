@@ -1,171 +1,278 @@
 <app-ems-header></app-ems-header>
-<!-- Save and other option -->
-<div class="container" align="center" style="margin-top: 15px;">
-    <ul class="nav" align="center">
-        <li>
-            <a href="#"> Back</a>
-        </li>
-        <li>
-            <a href="#">Save and Close</a>
-        </li>
-        <li>
-            <a href="#">Delete</a>
-        </li>
-        <li>
-            <p>Select</p>
-        </li>
-        <li>
-            <select>
-                <option value="Select">Select</option>
-                <option value="One">One</option>
-                <option value="Two">Two</option>
-                <option value="Three">Three</option>
-            </select>
-        </li>
-    </ul>
-</div>
-<div class="container-fluid" style="padding-left: 50px;">
+
+<div class="" style="margin-top: 12px;">
     <div class="row">
-        <div class="col-md-5">
-            <h4>Details</h4>
-            <div class="form-group row">
-                <div class="col-12">
-                    <input class="form-control" type="text" placeholder="Event Name" id="example-text-input">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-12">
-                    <input class="form-control" type="text" placeholder="Location" id="example-text-input">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-6">
-                    <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
-                </div>
-                <div class="col-4">
-                  <select class="form-control">
-                    <option>12</option>
-                    <option>12</option>
-                    <option>12</option>
-                    <option></option>
-                    <option></option>
-                  </select>
-                </div>
-                <div class="col-2">
-                  All Day
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-6">
-                    <input class="form-control" type="datetime-local" value="" id="datetime-local-input">
-                </div>
-                <div class="col-4">
-                  <select class="form-control">
-                    <option>12</option>
-                    <option>12</option>
-                    <option>12</option>
-                    <option></option>
-                    <option></option>
-                  </select>
-                </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-text-input" class="col-4 col-form-label">Assign Employee</label>
-              <div class="col-4" style="text-align: center;">
-                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Assign Update</button>
+      <div class="col-md-10">
+        <!-- <div class="row" style="background-color: #aaa;"> -->
+          <ul class="nav row event_header" align="center">
+            <li class="col-md-2">
+                <a href="#"> Back</a>
+            </li>
+            <li class="col-md-3">
+                <a href="#">Save and Close</a>
+            </li>
+            <li class="col-md-2">
+                <a href="#">Delete</a>
+            </li>
+            <li class="col-md-3">
+              <div class="row">
+                <p class="col-md-4" style="display: inline-block; margin: auto 0;">Show as: </p>
+                <select class="col-md-8 form-control" style="display: inline-block;">
+                  <option value="Select">Select</option>
+                  <option value="One">One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                </select>
               </div>
-              <div class="container-fluid modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-lg">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Assign Employee</h5>                                        
-                            <!-- <button type="button" class="close" data-dismiss="modal">&CircleTimes;</button> -->
+            </li>
+            <li class="col-md-2">
+                <a href="#">Next</a>
+            </li>
+          </ul>
+        <!-- </div> -->
+        <div class="row container-fluid" style="padding-left: 50px; padding-top: 25px;">
+            <div class="col-sm-12">
+                <flash-messages></flash-messages>
+            </div>
+            <div class="col-md-7">
+                <h4>Details</h4><br>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" [(ngModel)]="eventname" name="eventname" type="text" placeholder="Event Name" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" [(ngModel)]="location" name="location" type="text" placeholder="Location" id="example-text-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <input class="form-control" type="date" [(ngModel)]="startdate" name="startdate" id="example-datetime-local-input">
+                    </div>
+                    <div *ngIf="!alldayF" class="col-4">
+                      <select class="form-control" [(ngModel)]="starttime" name="starttime">
+                        <option>12:00 AM</option>
+                        <option>12:30 AM</option>
+                        <option>1:00 AM</option>
+                        <option>1:30 AM</option>
+                        <option>2:00 AM</option>
+                        <option>2:30 AM</option>
+                        <option>3:00 AM</option>
+                        <option>3:30 AM</option>
+                        <option>4:00 AM</option>
+                        <option>4:30 AM</option>
+                        <option>5:00 AM</option>
+                        <option>5:30 AM</option>
+                        <option>6:00 AM</option>
+                        <option>6:30 AM</option>
+                        <option>7:00 AM</option>
+                        <option>7:30 AM</option>
+                        <option>8:00 AM</option>
+                        <option>8:30 AM</option>
+                        <option>9:00 AM</option>
+                      </select>
+                    </div>
+                    <div class="col-2">
+                      <label><input type="checkbox" name="alldayF" [(ngModel)]="alldayF" (click)="onSelectAllDay()"/>All Day</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <input class="form-control" type="date" [(ngModel)]="enddate" id="datetime-local-input">
+                    </div>
+                    <div *ngIf="!alldayF" class="col-4">
+                      <select class="form-control" [(ngModel)]="endtime">
+                            <option>12:00 PM</option>
+                            <option>12:30 PM</option>
+                            <option>1:00 PM</option>
+                            <option>1:30 PM</option>
+                            <option>2:00 PM</option>
+                            <option>2:30 PM</option>
+                            <option>3:00 PM</option>
+                            <option>3:30 PM</option>
+                            <option>4:00 PM</option>
+                            <option>4:30 PM</option>
+                            <option>5:00 PM</option>
+                            <option>5:30 PM</option>
+                            <option>6:00 PM</option>
+                            <option>6:30 PM</option>
+                            <option>7:00 PM</option>
+                            <option>7:30 PM</option>
+                            <option>8:00 PM</option>
+                            <option>8:30 PM</option>
+                            <option>9:00 PM</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-4 col-form-label">Assign Employee</label>
+                  <div class="col-4" style="text-align: center;">
+                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Assign Update</button>
+                  </div>
+                  <div class="container-fluid modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Assign Employee</h5>                                        
+                                <!-- <button type="button" class="close" data-dismiss="modal">&CircleTimes;</button> -->
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-3">
+                                    <label><b>Assign coordinator</b></label>
+                                    <ul style="list-style: none; padding-left:0">
+                                        <li>
+                                            <input type="checkbox">NameOne</li>
+                                        <li>
+                                            <input type="checkbox">NameTwo</li>
+                                        <li>
+                                            <input type="checkbox">NameThree</li>
+                                        <li>
+                                            <input type="checkbox">NameFour</li>
+                                    </ul>
+                                </div>
+                                <div class="col-3">
+                                    <label><b>Bartender</b></label>
+                                    <ul style="list-style: none; padding-left:0">
+                                        <li>
+                                            <input type="checkbox">NameOne</li>
+                                        <li>
+                                            <input type="checkbox">NameTwo</li>
+                                        <li>
+                                            <input type="checkbox">NameThree</li>
+                                        <li>
+                                            <input type="checkbox">NameFour</li>
+                                    </ul>
+                                </div>
+                                <div class="col-3">
+                                    <label><b>Maintainance</b></label>
+                                    <ul style="list-style: none; padding-left:0">
+                                        <li>
+                                            <input type="checkbox">NameOne</li>
+                                        <li>
+                                            <input type="checkbox">NameTwo</li>
+                                        <li>
+                                            <input type="checkbox">NameThree</li>
+                                        <li>
+                                            <input type="checkbox">NameFour</li>
+                                    </ul>
+                                </div>
+                                <div class="col-3">
+                                    <label><b>HouseKeeping</b></label>
+                                    <ul style="list-style: none; padding-left:0">
+                                        <li>
+                                            <input type="checkbox">NameOne</li>
+                                        <li>
+                                            <input type="checkbox">NameTwo</li>
+                                        <li>
+                                            <input type="checkbox">NameThree</li>
+                                        <li>
+                                            <input type="checkbox">NameFour</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn loginButton" data-dismiss="modal">Update</button>
+                                <button type="button" class="btn loginButton" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                        <div class="modal-body row">
-                            <div class="col-3">
-                                <label><b>Assign coordinator</b></label>
-                                <ul style="list-style: none; padding-left:0">
-                                    <li>
-                                        <input type="checkbox">NameOne</li>
-                                    <li>
-                                        <input type="checkbox">NameTwo</li>
-                                    <li>
-                                        <input type="checkbox">NameThree</li>
-                                    <li>
-                                        <input type="checkbox">NameFour</li>
-                                </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h4>People</h4><br>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-5 col-form-label">Send Mail To</label>
+                    <div class="col-7">
+                        <button type="button" class="btn btn-deafult" (click)="onValidate()">Select</button>
+                    </div>
+                    <div class="container-fluid modal fade" id="selectEmployeesModal" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Send Email to</h5>                                        
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-3">
+                                        <label><b>Assign coordinator</b></label>
+                                        <ul style="list-style: none; padding-left:0">
+                                            <li>
+                                                <input type="checkbox">NameOne</li>
+                                            <li>
+                                                <input type="checkbox">NameTwo</li>
+                                            <li>
+                                                <input type="checkbox">NameThree</li>
+                                            <li>
+                                                <input type="checkbox">NameFour</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-3">
+                                        <label><b>Bartender</b></label>
+                                        <ul style="list-style: none; padding-left:0">
+                                            <li>
+                                                <input type="checkbox">NameOne</li>
+                                            <li>
+                                                <input type="checkbox">NameTwo</li>
+                                            <li>
+                                                <input type="checkbox">NameThree</li>
+                                            <li>
+                                                <input type="checkbox">NameFour</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-3">
+                                        <label><b>Maintainance</b></label>
+                                        <ul style="list-style: none; padding-left:0">
+                                            <li>
+                                                <input type="checkbox">NameOne</li>
+                                            <li>
+                                                <input type="checkbox">NameTwo</li>
+                                            <li>
+                                                <input type="checkbox">NameThree</li>
+                                            <li>
+                                                <input type="checkbox">NameFour</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-3">
+                                        <label><b>HouseKeeping</b></label>
+                                        <ul style="list-style: none; padding-left:0">
+                                            <li>
+                                                <input type="checkbox">NameOne</li>
+                                            <li>
+                                                <input type="checkbox">NameTwo</li>
+                                            <li>
+                                                <input type="checkbox">NameThree</li>
+                                            <li>
+                                                <input type="checkbox">NameFour</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn loginButton" (click)="addAndSendEvent()">Send Email</button>
+                                    <button type="button" class="btn loginButton" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="col-3">
-                                <label><b>Bartender</b></label>
-                                <ul style="list-style: none; padding-left:0">
-                                    <li>
-                                        <input type="checkbox">NameOne</li>
-                                    <li>
-                                        <input type="checkbox">NameTwo</li>
-                                    <li>
-                                        <input type="checkbox">NameThree</li>
-                                    <li>
-                                        <input type="checkbox">NameFour</li>
-                                </ul>
-                            </div>
-                            <div class="col-3">
-                                <label><b>Maintainance</b></label>
-                                <ul style="list-style: none; padding-left:0">
-                                    <li>
-                                        <input type="checkbox">NameOne</li>
-                                    <li>
-                                        <input type="checkbox">NameTwo</li>
-                                    <li>
-                                        <input type="checkbox">NameThree</li>
-                                    <li>
-                                        <input type="checkbox">NameFour</li>
-                                </ul>
-                            </div>
-                            <div class="col-3">
-                                <label><b>HouseKeeping</b></label>
-                                <ul style="list-style: none; padding-left:0">
-                                    <li>
-                                        <input type="checkbox">NameOne</li>
-                                    <li>
-                                        <input type="checkbox">NameTwo</li>
-                                    <li>
-                                        <input type="checkbox">NameThree</li>
-                                    <li>
-                                        <input type="checkbox">NameFour</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn loginButton" data-dismiss="modal">Update</button>
-                            <button type="button" class="btn loginButton" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <h4>People</h4>
-            <div class="form-group row">
-                <label for="example-text-input" class="col-3 col-form-label">Send Mail To</label>
-                <div class="col-9">
-                    <button type="button" class="btn btn-deafult">Select</button>
+                <div class="form-group">
+                    <label for="exampleTextarea">Mail Sent To:</label>
+                    <textarea disabled class="form-control" id="exampleTextarea" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea">Notes</label>
+                    <textarea class="form-control" [(ngModel)]="notes" id="exampleTextarea" rows="10"></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="exampleTextarea">Mail Sent To:</label>
-                <textarea disabled class="form-control" id="exampleTextarea" rows="4"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleTextarea">Notes</label>
-                <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
-            </div>
         </div>
-        <div style="border: 2px solid transparent; border-color:darkgreen" class="col-md-2">
-            <h4>Upcoming Events</h4>
-        </div>
+      </div>
+      <div style="border: 2px solid transparent; border-color:darkgreen" class="col-md-2">
+          <h4>Upcoming Events</h4>
+      </div>
     </div>
 </div>
 <footer>

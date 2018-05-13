@@ -61,10 +61,14 @@
       </form>
       <div class="col-md-2 col-sm-6" style="text-align: center;">
           <img width="100%" src="assets/profilePhoto.png" alt="profilephoto">
-          <form *ngIf="!editableF" method="post" enctype="multipart/form-data" action="/users/uploadImage">
-            <input type="file" name="myimage">
-            <input type="submit" name="submit" value="upload">
-          </form>
+                   
+          <!-- File input for upload without using the plugin. -->
+          <input id="photo" type="file" />
+          <!-- button to trigger the file upload when submitted -->
+          <button type="button" class="btn btn-success btn-s" (click)="upload()">
+            Upload with method 2
+          </button>
+
       </div>
     </div>
     <div class="row">

@@ -1,0 +1,11 @@
+ul.event_header {
+    background-color: #ddd;
+}
+
+ul.event_header li {
+    margin: auto 0;
+}
+
+ul.event_header li a {
+    color: black;
+}

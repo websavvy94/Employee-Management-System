@@ -6,6 +6,11 @@
 #myTopnav a {
     width: 14%;
     padding: 20px 15px;
+    color: orange;
+}
+
+#myTopnav a:hover {
+    color: black;
 }
 
 #myTopnav a.logo_section {

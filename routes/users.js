@@ -7,7 +7,9 @@ const config = require('../config/database');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 const multer = require('multer');
-const upload = multer({dest: 'assets/uploads/images/'});
+const DIR = './uploads/';
+const upload = multer({dest: DIR}).single('photo');
+
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -172,9 +174,22 @@ router.post('/changeStatus', (req, res, next) => {
 });
 
 //upload Image
-router.post('/uploadImage', upload.any(), (req, res, next) => {
-    res.send(req.files);
-    console.log(req.files);
+router.post('/uploadImage', (req, res, next) => {
+    const path = '';
+
+    upload(req, res, function(err) {
+        console.log(req);
+        // if(err) {
+        //     // An error occurred when uploading
+        //     console.log(err);
+        //     return res.status(422).send("an Error occured");
+        // }
+
+        // // No error occured
+        // path = req.file.path;
+
+        // return res.send("Upload Completed for " + path);
+    });
 });
 
 //Profile
