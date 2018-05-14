@@ -12,7 +12,7 @@ import { EventService } from './services/event.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { PassGuard } from './guards/pass.guard';
-// import { FileSelectDirective } from 'ng2-file-upload/ng2-file-upload'; ////
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -77,8 +77,8 @@ const appRoutes: Routes = [
     SmsDashboardComponent,
     BisDashboardComponent,
     UpdatePasswordComponent,
-    AddEventComponent
-    // FileSelectDirective 
+    AddEventComponent,
+    FileSelectDirective 
   ],
   imports: [
     BrowserModule,

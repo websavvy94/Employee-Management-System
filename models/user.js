@@ -32,13 +32,19 @@ const UserSchema = mongoose.Schema({
     street: {
         type: String
     },
+    street2: {
+        type: String
+    },
     city: {
         type: String
     },
     state: {
         type: String
     },
-    image: {
+    zipcode: {
+        type: String
+    },
+    photo: {
         type: String
     },
     status: {
@@ -93,9 +99,15 @@ module.exports.updateUser = function(newUser, callback){
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
-            phone: newUser.phone
+            phone: newUser.phone,
+            street: newUser.street,
+            street2: newUser.street2,
+            city: newUser.city,
+            state: newUser.state,
+            zipcode: newUser.zipcode,
+            photo: newUser.photo
         },
-        { upsert: false },
+        { new: true },
         callback
     );
 }

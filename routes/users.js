@@ -45,7 +45,13 @@ router.post('/update', (req, res, next) => {
         last_name: req.body.last_name,
         username: req.body.username,
         email: req.body.email,
-        phone: req.body.phone
+        phone: req.body.phone,
+        street: req.body.street,
+        street2: req.body.street2,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode,
+        photo: req.body.photo
     });
     User.updateUser(newUser, (err, user) => {
         if(err){
@@ -175,20 +181,21 @@ router.post('/changeStatus', (req, res, next) => {
 
 //upload Image
 router.post('/uploadImage', (req, res, next) => {
-    const path = '';
+    console.log(req);
+    var path = '';
 
     upload(req, res, function(err) {
-        console.log(req);
-        // if(err) {
-        //     // An error occurred when uploading
-        //     console.log(err);
-        //     return res.status(422).send("an Error occured");
-        // }
+        
+        if(err) {
+            // An error occurred when uploading
+            console.log(err);
+            return res.status(422).send("an Error occured");
+        }
 
-        // // No error occured
-        // path = req.file.path;
+        // No error occured
+        path = req.file.path;
 
-        // return res.send("Upload Completed for " + path);
+        return res.send("Upload Completed for " + path);
     });
 });
 

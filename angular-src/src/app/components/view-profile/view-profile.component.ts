@@ -4,6 +4,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { AuthService } from '../../services/auth.service';
 // import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { ValidateService } from '../../services/validate.service';
 import "rxjs/add/operator/do";
 import 'rxjs/add/operator/map';
 
@@ -22,15 +23,12 @@ export class ViewProfileComponent implements OnInit {
 
   // public uploader:FileUploader = new FileUploader({
   //   url: URL, 
-  //   allowedMimeType: ['image/png'],
-  //   maxFileSize: 1024*1024,
-  //   autoUpload: false,
-  //   isHTML5: true,
   //   itemAlias: 'photo'
   // });
 
   constructor(
     private authService: AuthService,
+    private validateService: ValidateService,
     private router: Router,
     private flashMessages: FlashMessagesService,
     private http: Http,
@@ -40,6 +38,7 @@ export class ViewProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.getProfile().subscribe(profile => {
         this.user = profile.user;
+        
       },
       err => {
         console.log(err);
@@ -48,9 +47,19 @@ export class ViewProfileComponent implements OnInit {
     );
     this.editableF = true;
 
-    // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    // this.uploader.onBeforeUploadItem = (fileItem: any) => {
+    //   // fileItem.formData.push( { user: this.user } );
+    //   // console.log(fileItem);
+    //  };
+
+    // this.uploader.onAfterAddingFile = (file)=> { 
+    //   file.withCredentials = false;
+    //   // console.log(file);
+    // };
+
     // this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-    //   console.log("ImageUpload:uploaded:", item, status, response);
+    //   // console.log("ImageUpload:uploaded:", item, status, response);
+    //   this.flashMessages.show('profile photo was uploaded successfully', {cssClass: 'alert-success', timeout: 3000});
     // };
   }
 
@@ -60,19 +69,25 @@ export class ViewProfileComponent implements OnInit {
   }
 
   saveProfile(user) {
+    if(!this.validateService.validatePhone(user.phone)) {
+      this.flashMessages.show("Please input correct phone number like a sample one", {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+
     this.authService.updateUser(user).subscribe(data => {
       if(data.success){
         this.flashMessages.show('User`s profile was updated successfully', {cssClass: 'alert-success', timeout: 3000});
+        window.location.reload();
       } else {
         this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/view_profile']);
+        window.location.reload();
       }
     });
   }
 
   cancelEdit(user) {
     // this.user = this.tempUser;
-    this.router.navigate(['/view_profile']);
+    window.location.reload();
   }
 
   onFileSelected(event) {
@@ -91,9 +106,9 @@ export class ViewProfileComponent implements OnInit {
     
     //check if the filecount is greater than zero, to be sure a file was selected.
     if (fileCount > 0) { // a file was selected
+      
         //append the key name 'photo' with the first file in the element
-        formData.append('photo', inputEl.files.item(0));
-        
+        formData.append('photo', inputEl.files.item(0), "user.png");
         //call the angular http method
         //post the form data to the url defined above and map the response. Then subscribe //to initiate the post. if you don't subscribe, angular wont post.
         this.http.post(URL, formData).map((res:Response) => res.json()).subscribe(
@@ -101,7 +116,9 @@ export class ViewProfileComponent implements OnInit {
           (success) => {
               alert(success._body);
           },
-          (error) => alert(error)
+          (error) => {
+            // alert(error);
+          }
         )
     }
   }
