@@ -106,7 +106,7 @@ router.post('/authenticate', (req, res, next) => {
                     }
                 });
             } else {
-                return res.json({success:false, msg: 'Wrong password'});
+                return res.json({success:false, msg: 'Invalid Username and Password. Please try again.'});
             }
         });
     });

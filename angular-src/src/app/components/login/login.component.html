@@ -10,6 +10,7 @@
     <form (submit)="onLoginSubmit()">
         <div class="card loginCard" align="center">
             <h2 class="greyText" style="margin-top:1em">User Login</h2>
+            <flash-messages></flash-messages>
             <div class="card-body">
                 <ul style="list-style-type:none">
                     <li>
@@ -27,7 +28,6 @@
                     <li>
                         <a [routerLink] = "['/register']">Forgot password?</a>
                     </li>
-                    <li><flash-messages></flash-messages></li>
                     <li>
                         <button class="loginButton" type="submit">Login</button>
                     </li>
